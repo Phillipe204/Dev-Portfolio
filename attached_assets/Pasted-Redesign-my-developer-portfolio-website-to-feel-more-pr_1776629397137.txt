@@ -1,0 +1,290 @@
+Redesign my developer portfolio website to feel **more premium, more modern, more polished, and more Apple-inspired** while still being practical, fast, and recruiter-friendly.
+
+I want the site to have an **Apple-style design language**:
+
+* ultra-clean layout
+* elegant spacing
+* minimal but premium visuals
+* strong typography
+* smooth animations
+* subtle gradients and glassy effects
+* refined hover states
+* soft shadows
+* visually balanced sections
+* excellent responsiveness on desktop, tablet, and mobile
+
+## Tech Stack / Languages / Frameworks / Libraries to Use
+
+Please rebuild or refactor the site using a **modern front-end stack** that is clean, maintainable, and high quality.
+
+### Core Languages
+
+Use:
+
+* **HTML5** structure best practices
+* **CSS3**
+* **JavaScript**
+* **TypeScript if appropriate** for cleaner, safer code
+
+### Preferred Framework
+
+Use:
+
+* **React** for a modern component-based structure
+
+### Build Tool
+
+Use:
+
+* **Vite** for fast development and clean performance
+
+### Styling
+
+Use:
+
+* **Tailwind CSS** for fast, scalable, modern styling
+* Use a well-structured design system with reusable utility patterns
+* Keep spacing, typography, sizing, and responsiveness highly consistent
+
+### Animation / Motion
+
+Use:
+
+* **Framer Motion** for elegant, smooth, premium animations
+
+Animations should feel:
+
+* smooth
+* subtle
+* intentional
+* premium
+* not flashy or overdone
+
+Examples:
+
+* section reveal animations
+* soft fade/slide-up transitions
+* smooth hover transitions
+* subtle button motion
+* elegant entrance animations in hero and project cards
+
+### Icons
+
+Use:
+
+* **Lucide React** for clean modern icons
+
+### UI Helpers / Components
+
+If useful, use:
+
+* **shadcn/ui** for polished, accessible UI components
+* reusable cards, buttons, badges, navigation, sheet/mobile menu, and dialog components
+
+### Extra UI / Visual Polish
+
+If needed, use libraries or techniques that help create:
+
+* glassmorphism effects
+* subtle gradient overlays
+* blur effects
+* premium card styling
+* smooth scroll behavior
+* sticky navbar interactions
+
+### Fonts
+
+Use modern Apple-like or premium clean fonts such as:
+
+* **Inter**
+* **SF Pro Display-inspired styling**
+* or another elegant sans-serif with excellent readability
+
+Typography should feel:
+
+* bold where needed
+* clean
+* high-end
+* readable
+* spacious
+
+## Design Direction
+
+The final website should feel like a mix of:
+
+* **Apple**
+* **modern SaaS landing page**
+* **premium developer portfolio**
+* **clean tech brand**
+
+Avoid:
+
+* clutter
+* overly flashy neon effects
+* too many colors
+* excessive motion
+* cheap-looking gradients
+* bulky layouts
+
+Prefer:
+
+* dark background with subtle lighting/glow
+* elegant blue/white/soft gray accent palette
+* lots of breathing room
+* big clean headings
+* polished buttons
+* refined cards
+* minimal but beautiful design
+
+## Site Structure to Improve
+
+### 1. Navbar
+
+Redesign the navbar so it feels premium and minimal:
+
+* sticky on scroll
+* clean spacing
+* subtle transparency or blur
+* active section highlighting
+* elegant hover states
+* mobile menu that looks polished and smooth
+
+### 2. Hero Section
+
+Make the hero section much more impressive:
+
+* stronger headline hierarchy
+* premium typography
+* better subtitle
+* better CTA buttons
+* improved spacing
+* subtle animated background accents
+* clean social links
+* elegant entrance animations
+
+I want the hero section to instantly feel like a high-end portfolio.
+
+### 3. About Section
+
+Make the about section feel more intentional and better structured:
+
+* cleaner content layout
+* better spacing
+* nicer card/container styling
+* more readable text hierarchy
+* polished visual presentation
+
+### 4. Skills / Tech Stack Section
+
+Redesign the skills section to feel modern and organized.
+
+Show my stack in grouped categories like:
+
+* Frontend
+* Backend
+* Databases
+* Tools
+* IT / Cybersecurity
+
+Include technologies like:
+
+* HTML
+* CSS
+* JavaScript
+* React
+* Vite
+* Tailwind CSS
+* Node.js
+* Express.js
+* MongoDB
+* SQL
+* Git / GitHub
+
+Make this section visually engaging with:
+
+* badges
+* cards
+* icon-based categories
+* subtle hover interactions
+* good spacing and readability
+
+### 5. Projects Section
+
+Redesign the projects section so each project looks like a premium showcase card.
+
+Each project card should ideally include:
+
+* project title
+* polished short description
+* tech stack
+* feature highlights
+* live demo button
+* GitHub button
+* modern hover effects
+* smooth animations
+* strong spacing and readability
+
+Make the cards feel like polished case-study previews, not plain boxes.
+
+### 6. Contact Section
+
+Make the contact section feel trustworthy and premium:
+
+* elegant layout
+* cleaner buttons
+* clear email / GitHub / LinkedIn access
+* strong visual hierarchy
+* polished hover interactions
+
+If a contact form exists, redesign it with a modern Apple-style UI.
+If it doesn’t exist, add one only if it improves the design and usability.
+
+### 7. Footer
+
+Make the footer minimal and sleek:
+
+* simple but premium
+* clean typography
+* subtle separators
+* social icons
+* consistent spacing
+
+## Apple-Style UX Rules
+
+While redesigning, follow these principles:
+
+* everything should feel intentional
+* use whitespace generously
+* keep layouts balanced
+* keep edges soft and modern
+* use blur and transparency tastefully
+* prioritize readability
+* make interactions feel smooth and expensive
+* keep the UI simple, not crowded
+* focus on polish over decoration
+
+## Performance / Code Quality
+
+While making the site look better, also make sure:
+
+* code is modular and reusable
+* components are cleanly structured
+* styling is consistent across all sections
+* animations are lightweight
+* performance stays fast
+* accessibility is improved
+* responsive behavior is excellent
+* the codebase feels production-quality
+
+## Final Goal
+
+I want the final portfolio to feel like:
+
+* a **premium Apple-style developer portfolio**
+* polished enough to impress recruiters
+* modern enough to look current
+* smooth enough to feel professionally built
+* simple enough to stay elegant
+* visually strong without feeling overdesigned
+
+Please directly update the design, layout, styling, and component structure using this stack and design direction.

@@ -1,0 +1,353 @@
+I want you to redesign and customize this developer portfolio template into a polished personal portfolio website for me.
+
+The site should represent me as an ambitious beginner-to-growing technical professional focused on full-stack development, IT, and an evolving future specialization in cybersecurity.
+
+My name is Felipe.
+
+I want the overall personal brand to feel like this:
+- clean
+- modern
+- premium
+- technical
+- focused
+- disciplined
+- ambitious
+- minimal but impressive
+- not overly flashy
+- not childish
+- not generic
+- not cluttered
+
+The design should look recruiter-friendly and professional first, while still having subtle modern effects that make it feel high-end. Think more “serious future engineer” than “creative agency designer.” The website should feel like someone who is building strong real-world skills in software, IT, and cybersecurity.
+
+IMPORTANT DESIGN DIRECTION:
+- Use a dark theme by default
+- Main look should be sleek, modern, and elegant
+- Use subtle gradients, soft glows, clean section spacing, smooth hover effects, and tasteful motion
+- Keep animations minimal and smooth, not excessive
+- Prioritize readability, clarity, and structure
+- Make the site look good on desktop, tablet, and mobile
+- Avoid anything too busy, cartoonish, or overly animated
+- Keep the UI polished and sharp
+- Make it feel like a portfolio that could impress recruiters, hiring managers, clients, and other developers
+
+I want the portfolio to be tailored around these themes:
+1. Full-Stack Development
+2. IT / Technical Support / Systems
+3. Cybersecurity as a future direction
+4. Problem solving
+5. Continuous learning
+6. Building useful, real-world projects
+
+TECH STACK / SKILLS TO SHOW:
+Please structure the skills and branding around the fact that I am learning or building in:
+- HTML
+- CSS
+- JavaScript
+- React
+- Next.js
+- Node.js
+- Python
+- SQL
+- Git
+- GitHub
+- Responsive design
+- API integration
+- Linux basics
+- Networking fundamentals
+- IT troubleshooting
+- System setup / technical problem solving
+- security-minded thinking
+- future cybersecurity learning
+
+Do not present me as a senior expert in everything. Present me honestly and strongly as a growing developer and technical learner with real ambition, clear direction, and a strong multi-disciplinary interest across software, IT, and cybersecurity.
+
+I want the messaging to frame me like this:
+“I’m building a strong foundation in full-stack development while also growing my knowledge in IT, systems, and cybersecurity.”
+
+WEBSITE GOAL:
+This website should help position me as:
+- a future full-stack engineer
+- someone with strong technical curiosity
+- someone who also understands the IT and systems side of technology
+- someone who is building toward cybersecurity knowledge later
+- someone serious about growth, learning, and long-term excellence
+
+SITE STRUCTURE:
+Please redesign the portfolio to include these sections in this order:
+
+1. HERO SECTION
+2. ABOUT ME
+3. SKILLS / TECH STACK
+4. FEATURED PROJECTS
+5. IT / TECHNICAL INTERESTS
+6. CYBERSECURITY JOURNEY
+7. EXPERIENCE / LEARNING JOURNEY
+8. GOALS / WHAT I’M WORKING TOWARD
+9. CONTACT SECTION
+
+HERO SECTION REQUIREMENTS:
+The hero section should immediately communicate:
+- my name
+- my technical direction
+- my value proposition
+- a short high-quality intro
+- a professional CTA
+
+Suggested positioning:
+Name: Felipe
+Headline ideas:
+- Full-Stack Developer in Progress | IT & Cybersecurity-Focused
+- Aspiring Full-Stack Developer with an IT & Security Mindset
+- Building Full-Stack Skills with a Foundation in IT and Future Cybersecurity Focus
+
+Create a strong hero paragraph that says I am building projects, sharpening technical skills, and growing across software development, IT, and security.
+
+Include 2 CTA buttons:
+- View Projects
+- Contact Me
+
+Optionally include a small badge or sub-label such as:
+- Full-Stack • IT • Cybersecurity Path
+- Developer • Technical Learner • Security-Minded Builder
+
+The hero should feel high-end and confident.
+
+ABOUT ME SECTION REQUIREMENTS:
+Write a strong About Me section that sounds personal, motivated, and professional.
+
+My background and direction should be described like this:
+- I am deeply interested in technology, growth, and building real skills
+- I am focused on learning full-stack development
+- I also care about IT, systems, troubleshooting, and technical foundations
+- I plan to continue growing into cybersecurity later
+- I like understanding how things work, solving problems, and building useful things
+- I am serious about long-term growth in tech
+
+Do not make this sound corny or exaggerated.
+Do not make it sound like a fake corporate bio.
+Make it sound real, intelligent, and motivated.
+
+SKILLS SECTION REQUIREMENTS:
+Create a well-designed skills section grouped by category.
+
+Use categories like:
+- Frontend
+- Backend
+- Databases
+- Tools & Workflow
+- IT & Systems
+- Security Foundations
+
+Example skills that should appear:
+Frontend:
+- HTML
+- CSS
+- JavaScript
+- React
+- Next.js
+- Tailwind CSS
+
+Backend:
+- Node.js
+- Express
+- Python
+
+Databases:
+- SQL
+
+Tools & Workflow:
+- Git
+- GitHub
+- API Integration
+- Responsive Design
+
+IT & Systems:
+- Troubleshooting
+- Technical setup
+- Networking fundamentals
+- Linux basics
+
+Security Foundations:
+- Security mindset
+- Cybersecurity learning
+- System awareness
+
+Make the design for this section visually clean and modern, with cards, icons, or tags.
+
+FEATURED PROJECTS SECTION REQUIREMENTS:
+Create a polished featured projects section.
+
+Even if placeholder content is needed, structure it around the kinds of projects I should showcase based on my interests.
+
+I want projects that match this identity, such as:
+- Full-stack web apps
+- dashboard apps
+- task/productivity apps
+- authentication-based apps
+- API-powered apps
+- Python tools
+- SQL-backed apps
+- IT-related tools
+- cybersecurity-related beginner tools or labs in the future
+
+Create strong placeholder project cards with:
+- project title
+- short description
+- technologies used
+- buttons for Live Demo and GitHub
+
+The project descriptions should feel aligned with my interests.
+Examples of project types:
+- Full-Stack Task Manager
+- IT Help Desk Ticket App
+- Security Notes Dashboard
+- Developer Productivity Tracker
+- API Data Dashboard
+- Python Automation Utility
+
+If placeholder projects are used, make them realistic and tailored to me.
+
+IT / TECHNICAL INTERESTS SECTION REQUIREMENTS:
+Include a dedicated section for my IT interests.
+
+This section should show that I’m not only interested in coding, but also:
+- technical troubleshooting
+- systems
+- networking basics
+- setup and configuration
+- understanding how software and hardware work together
+- building a strong general tech foundation
+
+This section should feel like a differentiator.
+It should show that I have broader technical interests beyond just frontend design.
+
+CYBERSECURITY JOURNEY SECTION REQUIREMENTS:
+Create a section specifically for my future cybersecurity path.
+
+Important:
+Do not pretend I am already an advanced cybersecurity expert.
+Frame it as an evolving journey and future specialization.
+
+This section should communicate:
+- I am interested in cybersecurity
+- I want to build a strong foundation first
+- I care about secure thinking, systems awareness, and understanding risk
+- I plan to grow deeper into cybersecurity over time
+- I want to combine development, IT knowledge, and security awareness
+
+This section can include a short paragraph and maybe a few cards or bullets like:
+- Security-minded development
+- Linux and systems foundations
+- Networking fundamentals
+- Future labs / writeups / security projects
+
+EXPERIENCE / LEARNING JOURNEY SECTION REQUIREMENTS:
+Since I am in a growth phase, this section should not rely on fake job experience.
+Instead, create a learning journey or technical growth timeline.
+
+This timeline can include:
+- learning web development fundamentals
+- building full-stack project skills
+- strengthening Python and SQL knowledge
+- working with React / Node.js
+- expanding into IT and systems understanding
+- moving toward cybersecurity fundamentals
+
+Make this section visually attractive and honest.
+
+GOALS SECTION REQUIREMENTS:
+Create a section that explains what I’m currently working toward.
+
+This should include goals like:
+- becoming strong in full-stack development
+- building real, useful projects
+- improving backend and database skills
+- strengthening IT and technical troubleshooting skills
+- developing security awareness
+- growing into cybersecurity later
+
+This section should help communicate ambition and direction.
+
+CONTACT SECTION REQUIREMENTS:
+Create a clean, professional contact section with:
+- email placeholder
+- GitHub placeholder
+- LinkedIn placeholder
+- optional location placeholder
+- contact form if appropriate
+
+Use clean wording like:
+“Let’s connect”
+“Open to opportunities, collaboration, and technical conversations”
+
+CONTENT / WRITING STYLE REQUIREMENTS:
+The copy should sound:
+- smart
+- clear
+- driven
+- human
+- professional
+- slightly ambitious
+- not arrogant
+- not overly casual
+- not cheesy
+- not robotic
+
+Do not fill the page with vague buzzwords.
+Avoid generic phrases like:
+- “I am passionate about innovation”
+- “I love leveraging cutting-edge technologies”
+- “Results-driven professional”
+unless rewritten to sound natural and real.
+
+VISUAL STYLE REQUIREMENTS:
+Please redesign the UI with:
+- dark background
+- modern card layouts
+- subtle blue / teal / purple accent glow if appropriate
+- sharp typography
+- clear spacing
+- elegant section dividers
+- polished buttons
+- smooth hover states
+- nice scroll behavior
+- soft shadows
+- subtle animations using Framer Motion if already compatible or easy to add
+
+Do not overdo animations.
+Do not make it look like a game.
+Do not make it harder to navigate.
+
+TECHNICAL REQUIREMENTS:
+- Keep the site performant
+- Keep the code clean and maintainable
+- Keep it responsive
+- Preserve SEO-friendly structure
+- Use reusable components where possible
+- Organize sections cleanly
+- Make text easy to edit later
+- Use meaningful component names
+- Keep accessibility in mind
+- Ensure contrast is readable
+
+OPTIONAL ENHANCEMENTS:
+If it fits the current template well, include:
+- a smooth scroll navbar
+- active section highlighting
+- a subtle animated background grid or particles, but only if tasteful
+- a GitHub link button
+- a downloadable resume button placeholder
+- project tags / filters
+- polished icons for skills and contact methods
+
+IMPORTANT FINAL DIRECTION:
+I do NOT want a generic portfolio.
+I want a portfolio that feels specifically built around this identity:
+
+A motivated, technical, growth-focused developer building a foundation in full-stack engineering, with meaningful interests in IT, systems, troubleshooting, and a future path into cybersecurity.
+
+Please update the portfolio’s layout, section content, styling direction, headings, text, and overall branding to fully match this identity.
+
+Where placeholders are necessary, make them realistic and easy for me to replace later.
+Return the updated code in a clean, production-quality structure.

@@ -1,0 +1,270 @@
+Build me a **full-stack task manager web application** that is modern, polished, responsive, and portfolio-worthy. I want this project to feel like a **real professional full-stack app** that I can showcase on my developer portfolio.
+
+## Main Goal
+Create a **productivity-focused task manager** with:
+- user authentication
+- protected routes
+- CRUD operations
+- clean dashboard UI
+- responsive design
+- modern full-stack architecture
+- polished user experience
+
+This project should be strong enough to use as a **featured portfolio project**.
+
+## Tech Stack
+Use this stack unless there is a better equivalent that fits the same purpose:
+
+### Frontend
+- **React**
+- **TypeScript**
+- **Vite**
+- **Tailwind CSS**
+- **Framer Motion**
+- **React Router**
+- **Lucide React**
+
+### Backend
+- **Node.js**
+- **Express.js**
+- **JWT authentication**
+- **bcrypt** for password hashing
+
+### Database
+Use one of these:
+- **MongoDB with Mongoose** preferred  
+or
+- **PostgreSQL** if the architecture would be cleaner
+
+### Optional / Helpful Libraries
+Use good supporting libraries where appropriate, such as:
+- **Axios** for API requests
+- **Zod** for validation
+- **React Hook Form** for forms
+- **TanStack Query** if useful for server state
+- **shadcn/ui** if it helps create a polished UI faster
+- **dotenv**
+- **cors**
+- **helmet**
+- **cookie-parser** if needed
+- **morgan** for backend logging
+
+## Design Direction
+Make the app feel:
+- modern
+- sleek
+- dark-themed or premium neutral-themed
+- clean and productivity-focused
+- smooth and responsive
+- Apple-inspired / SaaS-inspired
+- minimal but polished
+
+Avoid making it look too basic or too flashy.
+
+Use:
+- strong spacing
+- clean cards
+- soft shadows
+- subtle borders
+- smooth hover states
+- polished buttons
+- tasteful animations
+- mobile responsiveness
+
+## Core Features
+Please build the task manager with these main features:
+
+### 1. Authentication
+Implement full authentication flow:
+- sign up
+- log in
+- log out
+- protected dashboard routes
+- JWT-based authentication
+- hashed passwords
+- session persistence if appropriate
+
+### 2. Task Management
+Users should be able to:
+- create tasks
+- view tasks
+- edit tasks
+- delete tasks
+- mark tasks as completed
+- mark tasks as in progress
+- organize tasks clearly
+
+Each task should support fields like:
+- title
+- description
+- status
+- priority
+- due date
+- category or tag
+- created date
+
+### 3. Dashboard UI
+Create a clean dashboard where users can:
+- see all tasks
+- filter tasks by status
+- filter by priority
+- search tasks
+- sort tasks
+- quickly update status
+- clearly distinguish completed vs active tasks
+
+### 4. Task Status System
+Include statuses such as:
+- To Do
+- In Progress
+- Completed
+
+Optional:
+- Overdue
+- Archived
+
+### 5. Priority Levels
+Include:
+- Low
+- Medium
+- High
+
+Use badges, color indicators, or elegant UI labels to make priority easy to see.
+
+### 6. Search / Filter / Sort
+Users should be able to:
+- search by task title
+- filter by status
+- filter by priority
+- sort by newest
+- sort by due date
+- sort alphabetically if helpful
+
+### 7. Responsive Layout
+Make the whole app look great on:
+- desktop
+- tablet
+- mobile
+
+The dashboard should feel clean and easy to use on all screen sizes.
+
+## UI Structure
+Please include pages/components like:
+
+### Public Pages
+- Landing page or welcome page
+- Login page
+- Register page
+
+### Protected Pages
+- Dashboard
+- Task details view or modal
+- Profile/settings page if appropriate
+
+### Dashboard Sections
+- sidebar or top nav
+- summary cards
+- task list / board / cards
+- filters and search bar
+- create task button
+- empty state when no tasks exist
+
+## UX Improvements
+Please make the experience polished by including:
+- loading states
+- empty states
+- success/error toasts
+- form validation
+- disabled states where appropriate
+- confirmation before delete if helpful
+- smooth transitions
+- strong visual feedback for actions
+
+## Nice Extras to Add
+If possible, add a few premium features such as:
+- drag-and-drop task movement between statuses
+- task counts by category/status
+- progress summary cards
+- due date highlighting
+- dashboard statistics
+- dark mode toggle if easy to support
+- animated modals/drawers
+- reusable components
+- clean API architecture
+
+## Backend Requirements
+Structure the backend cleanly with:
+- routes
+- controllers
+- models
+- middleware
+- auth middleware
+- validation
+- error handling
+
+Include endpoints for:
+- auth/register
+- auth/login
+- auth/me
+- tasks/create
+- tasks/get all
+- tasks/get one
+- tasks/update
+- tasks/delete
+
+Make sure each user only accesses their own tasks.
+
+## Frontend Requirements
+Structure the frontend professionally with:
+- reusable components
+- pages folder
+- API layer/services
+- hooks where helpful
+- clean state management
+- protected route handling
+- modular file structure
+
+## Database Logic
+Store users and tasks properly.
+
+For tasks, include fields like:
+- userId
+- title
+- description
+- status
+- priority
+- dueDate
+- category
+- timestamps
+
+## Code Quality
+I want this project to feel like a real production-style app, so:
+- keep the code clean
+- use reusable components
+- organize files well
+- keep naming professional
+- make the UI polished
+- make the project easy to explain in a portfolio interview
+
+## Portfolio Quality
+This project should be impressive enough to feature on my portfolio as:
+
+**Full-Stack Task Manager**  
+A productivity-focused task management app with user authentication, CRUD operations, and a clean dashboard UI. Built to practice full-stack architecture, RESTful API design, and state management across the frontend and backend.
+
+Please make the actual app match that description.
+
+## Final Deliverable
+Please generate:
+1. the full project structure
+2. the frontend and backend setup
+3. the main pages and components
+4. the authentication flow
+5. the database models
+6. the API routes
+7. the dashboard UI
+8. sample seeded tasks if needed
+9. clean styling and responsiveness
+10. a polished result that is ready to run and continue improving
+
+If possible, also include a short README with setup instructions for local development.

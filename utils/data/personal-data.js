@@ -1,0 +1,15 @@
+export const personalData = {
+  name: "Felipe Mota",
+  profile: '/profile.png',
+  designation: "Full-Stack Developer in Progress",
+  headline: "Aspiring Full-Stack Developer with an IT & Security Mindset",
+  description: "I'm a developer building real skills across the full stack — from crafting responsive frontends with React and Next.js to writing backend logic with Node.js and Python, and managing data with SQL and MongoDB. I care about understanding how systems work, not just how to use them. That means I'm equally interested in IT fundamentals, networking basics, and the kind of security-first thinking that separates good engineers from great ones. I'm not chasing titles or buzzwords — I'm focused on building a strong technical foundation, shipping useful projects, and growing into cybersecurity over time. If you're looking for someone who's disciplined, curious, and serious about long-term growth in tech, let's talk.",
+  email: 'felipe2023usa@gmail.com',
+  phone: '(774) 810-3624',
+  address: '',
+  github: 'https://github.com/Phillipe204',
+  linkedIn: 'https://linkedin.com/in/yourusername',
+  twitter: '',
+  resume: "#",
+  devUsername: "",
+}
