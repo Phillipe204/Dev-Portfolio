@@ -1,564 +1,195 @@
-
-
-<h1 align="center">Developer Portfolio</h1>
+<h1 align="center">Felipe Mota — Developer Portfolio</h1>
 
 <p align="center">
-  <strong>A modern, responsive, and customizable portfolio template for developers and freelancers</strong>
+  <strong>A modern, dark-themed personal portfolio for a full-stack developer with an IT &amp; security mindset.</strong>
+</p>
+
+<p align="center">
+  Built with <a href="https://nextjs.org">Next.js 16</a> · <a href="https://react.dev">React 19</a> · <a href="https://tailwindcss.com">Tailwind CSS 4</a> · <a href="https://www.framer.com/motion/">Framer Motion</a>
 </p>
 
 ---
 
 ## Overview
 
-A professional portfolio template built with **Next.js 16**, **React 19**, and **Tailwind CSS 4**. Features a modern App Router architecture, server components, and data-driven configuration for easy customization.
+This is the source for Felipe Mota's personal developer portfolio — a single-page Next.js site that showcases who I am, what I'm building, the skills I'm sharpening, and how to get in touch. It's designed to feel intentional and quiet rather than flashy: a unified teal/sky/blue atmospheric background flows through every section, hard borders are softened into gradient fades, and the type does most of the talking.
+
+The site is data-driven. Almost everything you see — projects, experience, skills, contact info — lives in plain JavaScript files under `utils/data/`, so updating the content never means touching React components.
 
 ---
 
+## Highlights
+
+- **Single-page narrative** — Hero → About → Skills → Projects → Journey → Contact, each section anchored for smooth in-page navigation.
+- **Cohesive visual language** — A fixed, multi-layered radial gradient background bleeds the same hue through the navbar, sections, and footer so the page reads as one continuous surface.
+- **Animated, accessible UI** — Framer Motion drives the entry animations and scroll-driven transitions; the navbar tracks the active section in real time via `IntersectionObserver`.
+- **Hardened contact pipeline** — Server-side input validation, Google reCAPTCHA verification, an in-memory IP rate limiter (5 requests / 15 min), HTML escaping in owner email notifications, and dual delivery to both email (Nodemailer) and Telegram.
+- **Dev.to blog ingestion** — The `/blog` route automatically pulls and renders my latest dev.to posts when a username is configured.
+- **Production-ready** — Builds with Next.js Turbopack, optimized images via `sharp`, and a `pnpm` lockfile with explicit security overrides for known-vulnerable transitive dependencies.
 
 ---
 
-## Features :sparkles:
+## Tech Stack
 
-- ✅ **Cutting-Edge Tech Stack**: Built with Next.js 16, React 19, and Tailwind CSS 4
-- ✅ **Fully Responsive**: Optimized for all devices and screen sizes
-- ✅ **SEO Optimized**: Better visibility on search engines with Next.js metadata API
-- ✅ **Blazing Fast Performance**: Leverages Next.js 16 server components and streaming
-- ✅ **App Router**: Uses the modern Next.js App Router architecture
-- ✅ **Easy Customization**: Simple data-driven configuration
-- ✅ **Contact Form**: Integrated email and Telegram notifications
-- ✅ **Blog Integration**: Automatically fetch posts from dev.to
-- ✅ **Dark Theme**: Beautiful gradient design with Lottie animations
-- ✅ **Docker Support**: Easy containerized deployment
-- ✅ **Google Analytics**: Track visitor insights with GTM support
-
----
-
-## Next.js 16 Features Used :rocket:
-
-This portfolio leverages the latest Next.js 16 and React 19 capabilities:
-
-| Feature                  | Benefit                                                      |
-| ------------------------ | ------------------------------------------------------------ |
-| **App Router**           | Modern routing with layouts and nested routes                |
-| **Server Components**    | Improved performance with zero JavaScript for static content |
-| **Server Actions**       | Simplified form handling in contact page                     |
-| **Metadata API**         | Enhanced SEO with type-safe metadata                         |
-| **Image Optimization**   | Automatic image optimization with `next/image`               |
-| **Font Optimization**    | Automatic font loading with `next/font`                      |
-| **Streaming & Suspense** | Better loading states and progressive rendering              |
-| **React 19 Features**    | Actions, use hook, and improved hydration                    |
+| Layer | Choice |
+| --- | --- |
+| Framework | Next.js 16 (App Router, Server Components, Turbopack) |
+| UI | React 19, Tailwind CSS 4, SASS where useful |
+| Animation | Framer Motion, Lottie |
+| Icons | `lucide-react`, `react-icons` |
+| Email | Nodemailer (Gmail SMTP) |
+| Spam protection | Google reCAPTCHA v2 |
+| Notifications | Telegram Bot API |
+| Image optimization | `sharp` |
+| Analytics | `@next/third-parties` (Google Tag Manager) |
+| Package manager | pnpm |
 
 ---
 
-## Sections :bookmark:
+## Project Structure
 
-| Section           | Description                                         |
-| ----------------- | --------------------------------------------------- |
-| 🦸 **Hero**       | Eye-catching introduction with animated elements    |
-| 👤 **About Me**   | Personal information and professional summary       |
-| 💼 **Experience** | Work history and professional accomplishments       |
-| 🛠️ **Skills**     | Technical skills with animated marquee display      |
-| 🚀 **Projects**   | Showcase your best work with descriptions and links |
-| 🎓 **Education**  | Academic background and certifications              |
-| 📝 **Blog**       | Latest articles from dev.to (auto-fetched)          |
-| 📧 **Contact**    | Get in touch form with email/Telegram integration   |
-
----
-
-## Table of Contents :scroll:
-
-- [Overview](#overview)
-- [Demo](#demo-movie_camera)
-- [Features](#features-sparkles)
-- [Sections](#sections-bookmark)
-- [Tech Stack](#tech-stack-computer)
-- [Installation](#installation-arrow_down)
-- [Getting Started](#getting-started-dart)
-- [Usage](#usage-joystick)
-- [Deployment](#deployment-rocket)
-- [Tutorials](#tutorials-wrench)
-  - [Gmail App Password Setup](#gmail-app-password-setup)
-  - [Create a Telegram Bot](#create-a-telegram-bot)
-  - [Fetching Blog from dev.to](#fetching-blog-from-devto)
-- [Packages Used](#packages-used-package)
-- [Contributing](#contributing-handshake)
-- [License](#license-page_with_curl)
-- [Support](#support-coffee)
-
----
-
-## Tech Stack :computer:
-
-| Technology       | Version | Purpose                                   |
-| ---------------- | ------- | ----------------------------------------- |
-| **Next.js**      | 16.0.1  | React framework with App Router           |
-| **React**        | 19.2.0  | UI component library with latest features |
-| **Tailwind CSS** | 4.x     | Utility-first CSS framework               |
-| **SASS**         | Latest  | CSS preprocessor                          |
-| **Lottie**       | Latest  | Lightweight animations                    |
-| **Nodemailer**   | Latest  | Email sending functionality               |
-| **Axios**        | Latest  | HTTP client for API requests              |
-| **Docker**       | -       | Containerization platform                 |
+```
+.
+├── app/                              Next.js App Router
+│   ├── api/
+│   │   ├── contact/route.js          Hardened contact endpoint (captcha + rate limit + email/Telegram)
+│   │   ├── google/route.js           Server-side reCAPTCHA verification helper
+│   │   └── data/route.js             Data endpoint
+│   ├── blog/                         Dev.to-powered blog page
+│   ├── components/
+│   │   ├── footer.jsx                Footer with blended radial accents
+│   │   ├── navbar.jsx                Sticky nav with active-section tracking
+│   │   ├── helper/                   Glow card + scroll-to-top utilities
+│   │   └── homepage/                 All page sections (hero, about, skills, projects, ...)
+│   ├── css/
+│   │   ├── globals.css               Site-wide background gradient + glass utilities
+│   │   └── card.css                  Glow-card conic gradients
+│   ├── icon.png                      Favicon
+│   ├── layout.js                     Root layout (fonts, toast container, GTM)
+│   └── page.js                       Composes all homepage sections
+│
+├── utils/data/                       All site content lives here
+│   ├── personal-data.js              Name, contact, socials
+│   ├── experience.js                 Work history
+│   ├── projects-data.js              Project cards
+│   ├── skills.js                     Skill list
+│   ├── educations.js                 Education timeline
+│   └── contactsData.js               Contact section copy
+│
+├── public/                           Static assets (profile photo, SVG decorations)
+├── scripts/post-merge.sh             Post-merge hook (re-installs dependencies)
+└── package.json                      Dependencies + pnpm security overrides
+```
 
 ---
 
-## Installation :arrow_down:
+## Quick Start
 
 ### Prerequisites
 
-Before you begin, ensure you have the following installed on your machine:
+- Node.js 20 or newer
+- pnpm 10+ (`npm install -g pnpm`)
 
-| Tool                   | Minimum Version | Download Link                               |
-| ---------------------- | --------------- | ------------------------------------------- |
-| **Node.js**            | v18.17.0+       | [Download](https://nodejs.org/en/download/) |
-| **Git**                | Latest          | [Download](https://git-scm.com/downloads)   |
-| **pnpm** (recommended) | Latest          | [Install](https://pnpm.io/installation)     |
-
-> **Note**: Next.js 16 requires Node.js 18.17 or later. Node.js 20+ is recommended for optimal performance.
-
-#### Verify Installation
-
-Check your installations with these commands:
+### Install &amp; run
 
 ```bash
-node --version
-git --version
-pnpm --version  # or npm --version
-```
-
----
-
-## Getting Started :dart:
-
-### 1. Fork and Clone the Repository
-
-```bash
-git clone https://github.com/<YOUR_GITHUB_USERNAME>/developer-portfolio.git
-cd developer-portfolio
-```
-
-### 2. Install Dependencies
-
-```bash
-# Using pnpm (recommended)
 pnpm install
-
-# Using npm
-npm install
-
-# Using yarn
-yarn install
+pnpm dev          # dev server on http://localhost:5000
 ```
 
-### 3. Set Up Environment Variables
+### Production build
 
 ```bash
-cp .env.example .env
+pnpm build
+pnpm start        # serves the optimized build on port 5000
 ```
 
-Edit the `.env` file with your values (see [Usage](#usage-joystick) section).
-
-### 4. Run the Development Server
-
-```bash
-pnpm dev
-# or
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+The `serve` script combines both: `pnpm serve`.
 
 ---
 
-### 🐳 Docker Deployment (Alternative)
+## Configuration
 
-#### Option 1: Using Docker Compose (Recommended)
+### Personalize the content
 
-```bash
-docker-compose up --build
+Edit the files under `utils/data/`. The most common edits:
 
-# Run in detached mode
-docker-compose up -d --build
+- `personal-data.js` — name, headline, description, email, phone, GitHub, LinkedIn, resume link, dev.to username (`devUsername`).
+- `projects-data.js` — add, remove, or reorder project cards.
+- `experience.js` / `educations.js` — work history and education timeline.
+- `skills.js` — the skills shown in the marquee.
 
-# Stop
-docker-compose down
-```
+### Environment variables
 
-#### Option 2: Using Docker Directly
+Create a `.env.local` at the project root. None are strictly required to run the UI, but the contact form and blog need a few to fully work.
 
-**For Development:**
+| Variable | Purpose | Required for |
+| --- | --- | --- |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Public site key for the reCAPTCHA widget | Showing the captcha on the contact form |
+| `RECAPTCHA_SECRET_KEY` | **Server-only** secret used to verify captcha tokens | Accepting any contact form submission |
+| `EMAIL_ADDRESS` | Gmail address used to send notifications | Email delivery from contact form |
+| `GMAIL_PASSKEY` | Gmail App Password (not your account password) | Email delivery from contact form |
+| `NEXT_PUBLIC_TELEGRAM_USER_ID` | Telegram chat ID to receive messages | Telegram delivery from contact form |
+| `NEXT_PUBLIC_TELEGRAM_API_KEY` | Telegram bot token | Telegram delivery from contact form |
+| `NEXT_PUBLIC_GTM` | Google Tag Manager container ID | Analytics |
 
-```bash
-# Build the development image
-docker build -t developer-portfolio:dev -f Dockerfile.dev .
+> The reCAPTCHA secret is intentionally **not** prefixed with `NEXT_PUBLIC_` — it must never be exposed to the browser. Only the site key is public.
 
-# Run the container
-docker run -p 3000:3000 --name portfolio-dev developer-portfolio:dev
+### Replace the favicon
 
-# Stop and remove container
-docker stop portfolio-dev && docker rm portfolio-dev
-```
-
-**For Production:**
-
-```bash
-# Build the production image
-docker build -t developer-portfolio:prod -f Dockerfile.prod .
-
-# Run the production container
-docker run -p 3000:3000 --name portfolio-prod developer-portfolio:prod
-```
+Drop a square PNG at `app/icon.png`. Next.js automatically picks it up as the tab icon and metadata icon.
 
 ---
 
-## Usage :joystick:
+## Contact Form Security
 
-### Environment Variables Configuration
+The `/api/contact` endpoint applies layered defenses before any side effects (email or Telegram) are triggered:
 
-Create a `.env` file in the root directory with the following variables:
+1. **Server-side validation** — required fields, type checks, length caps, email format.
+2. **CAPTCHA verification** — every submission must include a token verified against Google's `siteverify` endpoint with the server-only secret.
+3. **Rate limiting** — in-memory limiter caps each IP at 5 submissions per 15-minute window.
+4. **HTML escaping** — owner email notifications escape `&`, `<`, `>`, `"`, and `'` so attacker-controlled markup never renders.
 
-```env
-# Google Tag Manager (Optional - for analytics)
-NEXT_PUBLIC_GTM=GTM-XXXXXXX
-
-# Your deployed app URL
-NEXT_PUBLIC_APP_URL=https://your-domain.com
-
-# Telegram Bot Configuration (for contact form notifications)
-TELEGRAM_BOT_TOKEN=your_bot_token_here
-TELEGRAM_CHAT_ID=your_chat_id_here
-
-# Gmail Configuration (for contact form emails)
-GMAIL_PASSKEY=your_gmail_app_password
-EMAIL_ADDRESS=your_email@gmail.com
-```
-
-#### Variable Descriptions:
-
-| Variable              | Required | Description                                  |
-| --------------------- | -------- | -------------------------------------------- |
-| `NEXT_PUBLIC_GTM`     | No       | Google Tag Manager ID for analytics tracking |
-| `NEXT_PUBLIC_APP_URL` | Yes      | Your portfolio's public URL                  |
-| `TELEGRAM_BOT_TOKEN`  | No       | Token for Telegram bot notifications         |
-| `TELEGRAM_CHAT_ID`    | No       | Your Telegram chat ID for receiving messages |
-| `GMAIL_PASSKEY`       | No       | Gmail app password for email notifications   |
-| `EMAIL_ADDRESS`       | No       | Your Gmail address for sending emails        |
-
-> **Note**: Contact form features require either Telegram or Gmail configuration (or both).
+Telegram notifications are sent as plain text and are not affected by HTML escaping.
 
 ---
 
-### Customize Your Portfolio Data
+## Dependency Security
 
-All portfolio content is managed through data files in the `utils/data/` folder:
+`package.json` includes `pnpm.overrides` that pin known-vulnerable transitive dependencies (e.g. `flatted`, `minimatch`, `brace-expansion`, `ajv`, `js-yaml`, `follow-redirects`) to patched versions. After a merge, `scripts/post-merge.sh` runs `pnpm install` automatically to reconcile the lockfile.
 
-#### 📝 Personal Information (`personal-data.js`)
-
-```javascript
-export const personalData = {
-  name: "YOUR NAME",
-  profile: "/profile.png", // Path to your profile image
-  designation: "Software Developer", // Your job title
-  description: "Your bio and introduction...", // About yourself
-  email: "your.email@example.com",
-  phone: "+1234567890",
-  address: "City, Country",
-  github: "https://github.com/yourusername",
-  facebook: "https://www.facebook.com/yourprofile",
-  linkedIn: "https://www.linkedin.com/in/yourprofile",
-  twitter: "https://twitter.com/yourusername",
-  stackOverflow: "https://stackoverflow.com/users/your-id",
-  leetcode: "https://leetcode.com/yourusername/",
-  devUsername: "yourusername", // dev.to username for blog integration
-  resume: "https://link-to-your-resume.pdf",
-};
-```
-
-#### 💼 Additional Data Files
-
-| File               | Purpose                                        |
-| ------------------ | ---------------------------------------------- |
-| `experience.js`    | Your work experience and job history           |
-| `projects-data.js` | Portfolio projects with descriptions and links |
-| `skills.js`        | Technical skills and competencies              |
-| `educations.js`    | Academic background and certifications         |
-| `contactsData.js`  | Contact form configuration                     |
-
-#### 🎨 Adding Your Profile Image
-
-Place your profile picture in the `public/` directory and update the `profile` field in `personal-data.js`:
-
-```javascript
-profile: "/your-image-name.png"; // or .jpg, .webp
-```
+If you add new dependencies, re-run a vulnerability scan and extend the override list as needed.
 
 ---
 
-## Deployment :rocket:
+## Deployment
 
-### 🚀 Deploy to Vercel (Recommended)
+Any Node-capable host works (Vercel, Replit, Render, a self-hosted box, etc.). The build is a standard Next.js production build.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/said7388/developer-portfolio)
-
-**Manual Deployment:**
-
-1. Sign up at [Vercel](https://vercel.com/)
-2. Import your GitHub repository
-3. Add environment variables in **Settings** → **Environment Variables**
-4. Deploy
-
-**Features:**
-
-- Native Next.js 16 support
-- Automatic deployments on push
-- Preview deployments for PRs
-- Edge runtime support
-- Global CDN and free SSL
+On Replit, the configured workflow runs `pnpm serve`, which builds and then starts on port 5000 bound to `0.0.0.0`.
 
 ---
 
-### 🌐 Deploy to Netlify
+## Scripts
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/said7388/developer-portfolio)
-
-**Manual Deployment:**
-
-1. Sign up at [Netlify](https://www.netlify.com/)
-2. Import your GitHub repository
-3. Build command: `npm run build`
-4. Publish directory: `.next`
-5. Add environment variables in **Site Settings** → **Environment**
+| Command | What it does |
+| --- | --- |
+| `pnpm dev` | Start the Next.js dev server on port 5000 |
+| `pnpm build` | Create a production build |
+| `pnpm start` | Serve the production build on port 5000 |
+| `pnpm serve` | Build then start (used by the deployment workflow) |
+| `pnpm lint` | Run ESLint via the Next.js config |
 
 ---
 
-### 🐳 Deploy with Docker
+## License
 
-```bash
-# Build production image
-docker build -t developer-portfolio:prod -f Dockerfile.prod .
-
-# Run
-docker run -d -p 80:3000 --name portfolio developer-portfolio:prod
-
-# Or use Docker Compose
-docker-compose -f docker-compose.prod.yml up -d
-```
+This portfolio is a personal project. The code is provided as a reference — feel free to learn from it. Please don't copy the personal content (name, copy, photos, project descriptions) verbatim for your own portfolio.
 
 ---
 
-## Tutorials :wrench:
+## Contact
 
-### 📧 Gmail App Password Setup
-
-1. Go to [https://myaccount.google.com/](https://myaccount.google.com/)
-2. Navigate to **Security** → **2-Step Verification** (enable if not already)
-3. Go to **Security** → **App Passwords**
-4. Select app: **Mail**, device: **Other (Custom name)**
-5. Generate and copy the 16-character password
-6. Add to `.env` file:
-
-```env
-GMAIL_PASSKEY=abcd efgh ijkl mnop
-EMAIL_ADDRESS=your.email@gmail.com
-```
-
----
-
-### 🤖 Create a Telegram Bot
-
-1. Open Telegram and search for `@BotFather`
-2. Send `/newbot` command
-3. Set bot name and username (must end with `bot`)
-4. Copy the bot token
-5. Send a message to your bot
-6. Get chat ID from: `https://api.telegram.org/bot<BOT_TOKEN>/getUpdates`
-7. Add to `.env` file:
-
-```env
-TELEGRAM_BOT_TOKEN=123456789:ABCdefGHIjklMNOpqrsTUVwxyz
-TELEGRAM_CHAT_ID=123456789
-```
-
----
-
-### 📝 Fetching Blog from dev.to
-
-1. Create a [dev.to](https://dev.to/) account
-2. Open `utils/data/personal-data.js`
-3. Set your dev.to username:
-
-```javascript
-export const personalData = {
-  // ... other fields
-  devUsername: "yourusername",
-};
-```
-
-The portfolio automatically fetches and displays your latest public articles. No API key required.
-
----
-
-## Packages Used :package:
-
-### Core Dependencies
-
-| Package         | Version | Purpose                                                      |
-| --------------- | ------- | ------------------------------------------------------------ |
-| **next**        | ^16.0.1 | Latest React framework with App Router and Server Components |
-| **react**       | ^19.2.0 | JavaScript library with improved concurrent rendering        |
-| **react-dom**   | ^19.2.0 | React package for working with the DOM                       |
-| **tailwindcss** | ^4.1.16 | Modern utility-first CSS framework                           |
-| **sass**        | Latest  | CSS preprocessor for styling                                 |
-
-### UI & Animations
-
-| Package                | Purpose                                    |
-| ---------------------- | ------------------------------------------ |
-| **lottie-react**       | Lightweight animations with Lottie files   |
-| **react-fast-marquee** | Smooth scrolling marquee component         |
-| **react-icons**        | Popular icon library with easy integration |
-| **react-toastify**     | Beautiful notification toasts              |
-
-### Functionality
-
-| Package                    | Purpose                           |
-| -------------------------- | --------------------------------- |
-| **axios**                  | Promise-based HTTP client         |
-| **nodemailer**             | Email sending functionality       |
-| **@emailjs/browser**       | Client-side email service         |
-| **react-google-recaptcha** | Google reCAPTCHA integration      |
-| **sharp**                  | High-performance image processing |
-| **@next/third-parties**    | Third-party script optimization   |
-
----
-
-## Troubleshooting :wrench:
-
-### Common Issues and Solutions
-
-<details>
-<summary><strong>❌ "next is not recognized as an internal or external command"</strong></summary>
-
-**Solution:**
-
-```bash
-# Option 1: Install Next.js globally
-npm install -g next
-
-# Option 2: Use npx (recommended)
-npx next dev
-
-# Option 3: Use package manager scripts
-npm run dev
-```
-
-</details>
-
-<details>
-<summary><strong>❌ Port 3000 is already in use</strong></summary>
-
-**Solution:**
-
-```bash
-# Find and kill the process using port 3000
-# On macOS/Linux:
-lsof -ti:3000 | xargs kill -9
-
-# On Windows:
-netstat -ano | findstr :3000
-taskkill /PID <PID> /F
-
-# Or use a different port:
-PORT=3001 npm run dev
-```
-
-</details>
-
-<details>
-<summary><strong>❌ Module not found or dependency errors</strong></summary>
-
-**Solution:**
-
-```bash
-# Clear cache and reinstall dependencies
-rm -rf node_modules package-lock.json
-npm cache clean --force
-npm install
-
-# Or with pnpm:
-rm -rf node_modules pnpm-lock.yaml
-pnpm store prune
-pnpm install
-```
-
-</details>
-
-<details>
-<summary><strong>❌ Environment variables not working</strong></summary>
-
-**Solution:**
-
-- Ensure `.env` file is in the root directory
-- Restart the development server after changing `.env`
-- Check that variables starting with `NEXT_PUBLIC_` are used for client-side code
-- Server-side variables should NOT start with `NEXT_PUBLIC_`
-
-</details>
-
-<details>
-<summary><strong>❌ Images not loading</strong></summary>
-
-**Solution:**
-
-- Verify images are in the `public/` directory
-- Use paths starting with `/` (e.g., `/profile.png`)
-- Check image file extensions match the code
-- Ensure image files are committed to your repository
-
-</details>
-
-<details>
-<summary><strong>❌ Contact form not sending emails</strong></summary>
-
-**Solution:**
-
-- Verify Gmail App Password is correct (16 characters)
-- Check that 2-Step Verification is enabled on your Google account
-- Ensure `EMAIL_ADDRESS` matches the Gmail account
-- Test Telegram bot token and chat ID separately
-- Check browser console for error messages
-
-</details>
-
----
-
-## Contributing :handshake:
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/AmazingFeature`
-3. Commit changes: `git commit -m 'Add some AmazingFeature'`
-4. Push to branch: `git push origin feature/AmazingFeature`
-5. Open a Pull Request
-
----
-
-## License :page_with_curl:
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
-
-## Support :coffee:
-
-- ⭐ [Star the repository](https://github.com/said7388/developer-portfolio/stargazers)
-- � [Report bugs](https://github.com/said7388/developer-portfolio/issues)
-- � [Suggest features](https://github.com/said7388/developer-portfolio/discussions)
-
----
-
-![GitHub stars](https://img.shields.io/github/stars/said7388/developer-portfolio?style=social)
-![GitHub forks](https://img.shields.io/github/forks/said7388/developer-portfolio?style=social)
-![GitHub issues](https://img.shields.io/github/issues/said7388/developer-portfolio)
-![GitHub license](https://img.shields.io/github/license/said7388/developer-portfolio)
+- **Email** — felipe2023usa@gmail.com
+- **GitHub** — [github.com/Phillipe204](https://github.com/Phillipe204)
+- **LinkedIn** — see the live site footer
