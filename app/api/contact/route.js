@@ -14,6 +14,55 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Escape user-supplied strings before embedding them in HTML
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
+// In-memory rate limiter: max 5 requests per IP per 15 minutes (defense-in-depth)
+const rateLimitMap = new Map();
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+
+  if (!entry || now > entry.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+
+  if (entry.count >= RATE_LIMIT_MAX) {
+    return true;
+  }
+
+  entry.count += 1;
+  return false;
+}
+
+// Verify a reCAPTCHA token with Google's API
+async function verifyCaptcha(token) {
+  const secret = process.env.RECAPTCHA_SECRET_KEY;
+  if (!secret) {
+    console.error('reCAPTCHA secret key is not configured.');
+    return false;
+  }
+  try {
+    const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`;
+    const res = await axios.post(url);
+    return res.data.success === true;
+  } catch (error) {
+    console.error('reCAPTCHA verification error:', error.message);
+    return false;
+  }
+}
+
 // Helper function to send a message via Telegram
 async function sendTelegramMessage(token, chat_id, message) {
   const url = `https://api.telegram.org/bot${token}/sendMessage`;
@@ -29,16 +78,16 @@ async function sendTelegramMessage(token, chat_id, message) {
   }
 };
 
-// HTML email template
+// HTML email template — all user values are HTML-escaped before insertion
 const generateEmailTemplate = (name, email, userMessage) => `
   <div style="font-family: Arial, sans-serif; color: #333; padding: 20px; background-color: #f4f4f4;">
     <div style="max-width: 600px; margin: auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
       <h2 style="color: #007BFF;">New Message Received</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
       <p><strong>Message:</strong></p>
       <blockquote style="border-left: 4px solid #007BFF; padding-left: 10px; margin-left: 0;">
-        ${userMessage}
+        ${escapeHtml(userMessage)}
       </blockquote>
       <p style="font-size: 12px; color: #888;">Click reply to respond to the sender.</p>
     </div>
@@ -52,7 +101,7 @@ async function sendEmail(payload, message) {
   const mailOptions = {
     from: "Portfolio", 
     to: process.env.EMAIL_ADDRESS, 
-    subject: `New Message From ${name}`, 
+    subject: `New Message From ${name.substring(0, 100)}`, 
     text: message, 
     html: generateEmailTemplate(name, email, userMessage), 
     replyTo: email, 
@@ -67,10 +116,74 @@ async function sendEmail(payload, message) {
   }
 };
 
+// Basic email format check
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 export async function POST(request) {
   try {
+    // Rate limit by IP (defense-in-depth; primary bot protection is reCAPTCHA below)
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+      request.headers.get('x-real-ip') ||
+      'unknown';
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json({
+        success: false,
+        message: 'Too many requests. Please try again later.',
+      }, { status: 429 });
+    }
+
     const payload = await request.json();
-    const { name, email, message: userMessage } = payload;
+    const { name, email, message: userMessage, captchaToken } = payload;
+
+    // Verify reCAPTCHA before any side effects
+    if (!captchaToken) {
+      return NextResponse.json({
+        success: false,
+        message: 'CAPTCHA verification is required.',
+      }, { status: 400 });
+    }
+
+    const captchaValid = await verifyCaptcha(captchaToken);
+    if (!captchaValid) {
+      return NextResponse.json({
+        success: false,
+        message: 'CAPTCHA verification failed. Please try again.',
+      }, { status: 403 });
+    }
+
+    // Server-side input validation
+    if (!name || !email || !userMessage) {
+      return NextResponse.json({
+        success: false,
+        message: 'All fields are required.',
+      }, { status: 400 });
+    }
+
+    if (typeof name !== 'string' || name.trim().length === 0 || name.length > 100) {
+      return NextResponse.json({
+        success: false,
+        message: 'Invalid name.',
+      }, { status: 400 });
+    }
+
+    if (typeof email !== 'string' || !isValidEmail(email) || email.length > 100) {
+      return NextResponse.json({
+        success: false,
+        message: 'Invalid email address.',
+      }, { status: 400 });
+    }
+
+    if (typeof userMessage !== 'string' || userMessage.trim().length === 0 || userMessage.length > 500) {
+      return NextResponse.json({
+        success: false,
+        message: 'Invalid message.',
+      }, { status: 400 });
+    }
+
     const token = process.env.TELEGRAM_BOT_TOKEN;
     const chat_id = process.env.TELEGRAM_CHAT_ID;
 

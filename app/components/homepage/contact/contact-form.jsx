@@ -1,14 +1,16 @@
 "use client";
 import { isValidEmail } from "@/utils/check-email";
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Send, Loader2 } from "lucide-react";
 import { toast } from "react-toastify";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function ContactForm() {
   const [error, setError] = useState({ email: false, required: false });
   const [isLoading, setIsLoading] = useState(false);
   const [userInput, setUserInput] = useState({ name: "", email: "", message: "" });
+  const recaptchaRef = useRef(null);
 
   const checkRequired = () => {
     if (userInput.email && userInput.message && userInput.name) {
@@ -27,13 +29,21 @@ function ContactForm() {
       setError({ ...error, required: false });
     }
 
+    const captchaToken = recaptchaRef.current?.getValue();
+    if (!captchaToken) {
+      toast.error("Please complete the CAPTCHA before sending.");
+      return;
+    }
+
     try {
       setIsLoading(true);
-      await axios.post("/api/contact", userInput);
+      await axios.post("/api/contact", { ...userInput, captchaToken });
       toast.success("Message sent. I'll get back to you soon.");
       setUserInput({ name: "", email: "", message: "" });
+      recaptchaRef.current?.reset();
     } catch (err) {
       toast.error(err?.response?.data?.message || "Something went wrong.");
+      recaptchaRef.current?.reset();
     } finally {
       setIsLoading(false);
     }
@@ -123,6 +133,16 @@ function ContactForm() {
           rows="5"
         />
       </div>
+
+      {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
+        <div className="flex justify-center">
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+            theme="dark"
+          />
+        </div>
+      )}
 
       <div className="flex items-center justify-between gap-3 pt-1">
         {error.required ? (
