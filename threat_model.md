@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository is a public-facing developer portfolio built with Next.js 16 App Router, React 19, and Tailwind CSS. In production it primarily serves static content, but it also exposes server-side API routes for a contact workflow that forwards user-submitted messages to Telegram and Gmail via Nodemailer.
+This repository is a public-facing developer portfolio built with Next.js 16 App Router, React 19, and Tailwind CSS. In production it primarily serves static content, but it also exposes server-side API routes for a contact workflow that forwards user-submitted messages to Telegram and Gmail via Nodemailer and performs reCAPTCHA verification against Google's API.
 
 The production attack surface is small and mostly unauthenticated. There is no user login, no session layer, no database, and no admin UI in this codebase. Production assumptions for this scan: `NODE_ENV=production`, TLS is handled by the platform, and mockup sandbox environments are not production-reachable.
 
@@ -11,11 +11,12 @@ The production attack surface is small and mostly unauthenticated. There is no u
 - **Contact channel integrity** — the `/api/contact` route can trigger outbound email and Telegram messages. Abuse here can create spam, alert flooding, quota exhaustion, or operational denial of service.
 - **Application secrets** — `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `GMAIL_PASSKEY`, `EMAIL_ADDRESS`, optional GTM configuration, and any reCAPTCHA secret used by server routes. Exposure would allow unauthorized outbound actions or service impersonation.
 - **Owner inbox / notification trust** — inbound contact content is delivered to the site owner through email and Telegram. Malicious payloads that alter how those messages render or overwhelm them are security-relevant.
+- **Third-party verification availability** — Google reCAPTCHA verification is part of the contact submission path. Unnecessary or unbounded use of that shared dependency can degrade legitimate contact handling.
 - **Static reputation content** — links and displayed profile data in `utils/data/` are build-time content. They matter for phishing and open-redirect style review only if they become runtime user-controlled.
 
 ## Trust Boundaries
 
-- **Public browser → Next.js server routes** — `app/api/contact/route.js` and `app/api/google/route.js` accept unauthenticated requests from the internet. All request bodies are untrusted.
+- **Public browser → Next.js server routes** — `app/api/contact/route.js`, `app/api/google/route.js`, and `app/api/data/route.js` accept unauthenticated requests from the internet. All request bodies and most request headers are untrusted.
 - **Next.js server → third-party services** — the server calls Telegram, Gmail SMTP, and Google reCAPTCHA using secrets from environment variables.
 - **Build-time repo content → rendered client UI** — data files under `utils/data/` are trusted only as repository-controlled content at build time, not as user input.
 - **Production vs dev-only configuration** — `Dockerfile.dev`, `.next/`, `.cache/`, `attached_assets/`, and `next.config.js` dev-origin allowances should be ignored unless a path is proven production-reachable.
@@ -23,9 +24,9 @@ The production attack surface is small and mostly unauthenticated. There is no u
 ## Scan Anchors
 
 - **Production entry points:** `app/page.js`, `app/layout.js`, `app/api/contact/route.js`, `app/api/google/route.js`, `app/api/data/route.js`
-- **Highest-risk code areas:** contact submission flow (`app/components/homepage/contact/contact-form.jsx` + `app/api/contact/route.js`), outbound integrations and secrets, route-level validation / abuse controls, environment-variable handling
+- **Highest-risk code areas:** contact submission flow (`app/components/homepage/contact/contact-form.jsx` + `app/api/contact/route.js`), route-level abuse controls, outbound integrations and secrets, redundant public helper routes that invoke third-party services
 - **Public vs authenticated vs admin:** all routes are public; there is no authenticated or admin surface in this repo
-- **Usually dev-only / out of scope unless proven reachable:** `Dockerfile.dev`, `allowedDevOrigins` behavior in development, `.next/`, `.cache/`, attached assets, README examples
+- **Usually dev-only / out of scope unless proven reachable:** `Dockerfile.dev`, `allowedDevOrigins` behavior in development, `.next/`, `.cache/`, attached assets, README-only examples
 - **Noise to deprioritize unless trust changes:** link-based XSS findings on `utils/data/*` or static project/blog cards are likely false positives unless those URLs become runtime user-controlled
 
 ## Threat Categories
@@ -50,11 +51,13 @@ Required guarantees:
 
 ### Denial of Service
 
-Because the exposed backend is unauthenticated and triggers email / Telegram side effects, abuse resistance matters more than confidentiality. Attackers can attempt repeated submissions, oversized bodies, or bot traffic to exhaust quotas, flood the inbox, or degrade service.
+Because the exposed backend is unauthenticated and triggers email / Telegram side effects and external CAPTCHA verification, abuse resistance matters more than confidentiality. Attackers can attempt repeated submissions, oversized bodies, or bot traffic to exhaust quotas, flood the inbox, or degrade service. Redundant public routes that invoke third-party services can create additional availability risk even when they do not expose data.
 
 Required guarantees:
 - Public side-effecting endpoints MUST have effective abuse controls such as rate limiting, CAPTCHA enforcement, or equivalent server-side protections.
 - Expensive or side-effecting requests MUST reject malformed or oversized input early.
+- If IP-based throttling is used behind a proxy, client identity MUST come from trusted infrastructure-derived signals rather than user-supplied forwarding headers.
+- Public helper endpoints that trigger third-party verification or other outbound work SHOULD be removed if redundant, or protected to the same standard as the primary route they support.
 - Third-party calls SHOULD fail safely without causing cascading operational impact.
 
 ### Spoofing
