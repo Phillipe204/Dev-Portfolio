@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository is a public-facing developer portfolio built with Next.js 16 App Router, React 19, and Tailwind CSS. In production it primarily serves static content, but it also exposes server-side API routes for a contact workflow that forwards user-submitted messages to Telegram and Gmail via Nodemailer and performs reCAPTCHA verification against Google's API.
+This repository is a public-facing developer portfolio built with Next.js 16 App Router, React 19, and Tailwind CSS. In production it primarily serves static content, but it also exposes server-side API routes for a contact workflow that forwards user-submitted messages to Telegram and Gmail via Nodemailer and performs reCAPTCHA verification against Google's API. The `/blog` page is currently a static "Coming soon" page rather than a live content-ingestion surface.
 
 The production attack surface is small and mostly unauthenticated. There is no user login, no session layer, no database, and no admin UI in this codebase. Production assumptions for this scan: `NODE_ENV=production`, TLS is handled by the platform, and mockup sandbox environments are not production-reachable.
 
@@ -16,18 +16,18 @@ The production attack surface is small and mostly unauthenticated. There is no u
 
 ## Trust Boundaries
 
-- **Public browser → Next.js server routes** — `app/api/contact/route.js`, `app/api/google/route.js`, and `app/api/data/route.js` accept unauthenticated requests from the internet. All request bodies and most request headers are untrusted.
+- **Public browser → Next.js server routes** — `app/api/contact/route.js` and `app/api/data/route.js` accept unauthenticated requests from the internet. All request bodies and most request headers are untrusted.
 - **Next.js server → third-party services** — the server calls Telegram, Gmail SMTP, and Google reCAPTCHA using secrets from environment variables.
 - **Build-time repo content → rendered client UI** — data files under `utils/data/` are trusted only as repository-controlled content at build time, not as user input.
 - **Production vs dev-only configuration** — `Dockerfile.dev`, `.next/`, `.cache/`, `attached_assets/`, and `next.config.js` dev-origin allowances should be ignored unless a path is proven production-reachable.
 
 ## Scan Anchors
 
-- **Production entry points:** `app/page.js`, `app/layout.js`, `app/api/contact/route.js`, `app/api/google/route.js`, `app/api/data/route.js`
-- **Highest-risk code areas:** contact submission flow (`app/components/homepage/contact/contact-form.jsx` + `app/api/contact/route.js`), route-level abuse controls, outbound integrations and secrets, redundant public helper routes that invoke third-party services
+- **Production entry points:** `app/page.js`, `app/layout.js`, `app/api/contact/route.js`, `app/api/data/route.js`
+- **Highest-risk code areas:** contact submission flow (`app/components/homepage/contact/contact-form.jsx` + `app/api/contact/route.js`), request-body handling before deserialization, route-level abuse controls, outbound integrations and secrets
 - **Public vs authenticated vs admin:** all routes are public; there is no authenticated or admin surface in this repo
 - **Usually dev-only / out of scope unless proven reachable:** `Dockerfile.dev`, `allowedDevOrigins` behavior in development, `.next/`, `.cache/`, attached assets, README-only examples
-- **Noise to deprioritize unless trust changes:** link-based XSS findings on `utils/data/*` or static project/blog cards are likely false positives unless those URLs become runtime user-controlled
+- **Noise to deprioritize unless trust changes:** link-based XSS findings on `utils/data/*` or static project/blog cards are likely false positives unless those URLs become runtime user-controlled; current blog card components are not production-reachable from `app/page.js`
 
 ## Threat Categories
 
