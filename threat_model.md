@@ -26,8 +26,8 @@ The production attack surface is small and mostly unauthenticated. There is no u
 - **Production entry points:** `app/page.js`, `app/layout.js`, `app/api/contact/route.js`, `app/api/data/route.js`
 - **Highest-risk code areas:** contact submission flow (`app/components/homepage/contact/contact-form.jsx` + `app/api/contact/route.js`), request-body handling before deserialization, route-level abuse controls, outbound integrations and secrets
 - **Public vs authenticated vs admin:** all routes are public; there is no authenticated or admin surface in this repo
-- **Usually dev-only / out of scope unless proven reachable:** `Dockerfile.dev`, `allowedDevOrigins` behavior in development, `.next/`, `.cache/`, attached assets, README-only examples
-- **Noise to deprioritize unless trust changes:** link-based XSS findings on `utils/data/*` or static project/blog cards are likely false positives unless those URLs become runtime user-controlled; current blog card components are not production-reachable from `app/page.js`
+- **Usually dev-only / out of scope unless proven reachable:** `Dockerfile.dev`, `.next/`, `.cache/`, attached assets, README-only examples
+- **Noise to deprioritize unless trust changes:** link-based XSS findings on `utils/data/*` or static project/blog cards are likely false positives unless those URLs become runtime user-controlled; current blog card components and legacy `app/components/homepage/projects/single-project.jsx` are not production-reachable from `app/page.js`
 
 ## Threat Categories
 
