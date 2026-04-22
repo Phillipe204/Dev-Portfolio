@@ -144,6 +144,22 @@ export async function POST(request) {
       }, { status: 429 });
     }
 
+    // Reject oversized request bodies before deserialization.
+    // Maximum legitimate payload: name(100) + email(100) + message(500) +
+    // captchaToken(~500) + JSON structure overhead ≈ well under 8 KB.
+    // Enforcing this limit before request.json() ensures the Node process
+    // never buffers or parses attacker-controlled multi-megabyte bodies,
+    // even on unauthenticated requests that have not yet passed CAPTCHA.
+    const MAX_BODY_BYTES = 8192; // 8 KB
+    const contentLength = request.headers.get('content-length');
+    const parsedLength = contentLength !== null ? parseInt(contentLength, 10) : NaN;
+    if (!Number.isFinite(parsedLength) || parsedLength < 0 || parsedLength > MAX_BODY_BYTES) {
+      return NextResponse.json({
+        success: false,
+        message: 'Request body too large.',
+      }, { status: 413 });
+    }
+
     const payload = await request.json();
     const { name, email, message: userMessage, captchaToken } = payload;
 
