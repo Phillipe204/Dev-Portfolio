@@ -124,10 +124,18 @@ function isValidEmail(email) {
 export async function POST(request) {
   try {
     // Rate limit by IP (defense-in-depth; primary bot protection is reCAPTCHA below)
-    const ip =
-      request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
-      request.headers.get('x-real-ip') ||
-      'unknown';
+    // Use the RIGHTMOST (last) entry from x-forwarded-for, which is appended by the
+    // trusted infrastructure proxy (Vercel edge / reverse-proxy). Clients can inject
+    // arbitrary IPs at the start of the header but cannot remove what the proxy appends,
+    // so the last entry is the one that reflects the actual upstream-seen client address.
+    // This prevents rate-limit bypass via spoofed forwarding headers (taking the first
+    // entry is unsafe because it is fully attacker-controlled).
+    // NOTE: x-real-ip is intentionally NOT used as a fallback because it is also
+    // a client-settable header that can be spoofed unless the proxy explicitly strips
+    // and rewrites it. Trusting the infrastructure-appended x-forwarded-for last hop
+    // is the safer approach across proxy configurations.
+    const forwarded = request.headers.get('x-forwarded-for');
+    const ip = forwarded ? forwarded.split(',').at(-1).trim() : 'unknown';
 
     if (isRateLimited(ip)) {
       return NextResponse.json({
